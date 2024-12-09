@@ -13,6 +13,8 @@ I also have a physical Apple TV Remote. I'd like to be able to use this to contr
 
 I mainly use the Apple TV and the WiiM. With **comando** behind-the-scenes, 95% of the time, the Apple TV Remote should be sufficient. **comando** will monitor events such as device power state and configures inputs etc. accordingly. For example, if I start playing music via TIDAL Connect on the WiiM, **comando** should detect this and switch the input on the miniDSP. In cases where additional control is required, the front-end should be used to control the system.
 
+Although this tool will be built purposefully for my setup, the intention is to make it flexible, scalable and adaptable to other similar setups if anyone has interest in doing so. In that case, I suggest forking this repository and going from there. It is emphasized that such use will require experience with coding as well as technical expertise; it is __not intended__ to be a direct alternative to Roomie Remote or other "plug and play" consumer-focused remote control systems.
+
 ## Setup
 
 ```mermaid
@@ -40,7 +42,7 @@ Methods of device control are as follows:
 | WiiM Pro | Network/IP control |
 | Apple TV 4K | HDMI CEC |
 
-Other source devices (PS3, RetroPie) are not included as controllable devices, but **commando** enables input selection for them.
+Other source devices (PS3, RetroPie) are not included as controllable devices, but **comando** enables input selection for them.
 
 ## Dependencies
 
