@@ -1,0 +1,17 @@
+[project]
+name = "comando"
+version = "0.1.0"
+description = "A/V controller and remote"
+readme = "README.md"
+authors = [
+    { name = "Kenneth Trelborg Vestergaard", email = "6765646+mortencombat@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+comando = "comando:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
