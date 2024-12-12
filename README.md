@@ -53,3 +53,4 @@ Other source devices (PS3, RetroPie) are not included as controllable devices, b
 | [cec](https://github.com/trainman419/python-cec) | Python package | CEC control of on/standby for LG TV and miniDSP Flex HTx |
 | [bscpylgtv](https://github.com/chros73/bscpylgtv) | Python package | Network/IP control of LG TV |
 | [PyTach](https://github.com/gotling/PyTach) | Python package | Hopefully not needed, but I have a couple of Global Caché iTach Flex which can be used to bridge IR and RS232 control to network/IP |
+| httpx | Python package | Interfacing with REST APIs |
