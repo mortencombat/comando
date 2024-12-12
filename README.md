@@ -50,6 +50,7 @@ Other source devices (PS3, RetroPie) are not included as controllable devices, b
 | ---------- | ---- | ------- |
 | [minidsp-rs](https://github.com/mrene/minidsp-rs) | CLI/API | Control of miniDSP Flex HTx |
 | [cec-utils](https://manpages.debian.org/testing/cec-utils/cec-client.1.en.html) | CLI | For testing/configuration of HDMI CEC, see [this guide](https://pimylifeup.com/raspberrypi-hdmi-cec/) |
+| [cec-ctl](https://manpages.debian.org/bookworm/v4l-utils/cec-ctl.1.en.html#help~21) | CLI | Alternative to cec-utils |
 | [cec](https://github.com/trainman419/python-cec) | Python package | CEC control of on/standby for LG TV and miniDSP Flex HTx |
 | [bscpylgtv](https://github.com/chros73/bscpylgtv) | Python package | Network/IP control of LG TV |
 | [PyTach](https://github.com/gotling/PyTach) | Python package | Hopefully not needed, but I have a couple of Global Caché iTach Flex which can be used to bridge IR and RS232 control to network/IP |
