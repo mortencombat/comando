@@ -1,5 +1,7 @@
 # comando
 
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 **comando** is a hobby project to create a controller/remote for my A/V devices. It is designed to run on a Raspberry Pi Zero 2 W using Raspberry Pi OS Lite (64-bit).
 
 I'm currently using Roomie Remote for controlling my A/V system, but even though I have a cheaper subscription carried over from when it was Simple Control, I do not appreciate the subscription price gouging of Roomie Remote. Second, Roomie Remote has a lot of extra clutter I'm never using, and I'd like a simpler and laser-focused UX. Finally, I'd like to use this project as a learning experience :-)
@@ -27,7 +29,8 @@ Vertex["HDFury Vertex 2"] --> |HDMI|TV
 AppleTV["Apple TV 4K"] --> |HDMI|Vertex
 RetroPie --> |HDMI|Vertex
 PS3 --> |HDMI|Vertex
-miniDSP --> |"TRS-XLR + 12V"|Amp["Power amp"]
+miniDSP --> |RCA|SCLX71["Pioneer SC-LX71"]
+iTachFlex["iTach Flex"] --> |RS232|SCLX71
 ```
 
 ## Device control
@@ -36,15 +39,24 @@ Methods of device control are as follows:
 
 | Device | Control interface |
 | ------ | ----------------- |
-| LG TV  | HDMI CEC (on/standby); network/IP control |
-| miniDSP Flex HTx | HDMI CEC (on/standy); USB (using minidsp-rs) |
-| HDFury Vertex 2 | Network/IP control |
+| LG TV  | HDMI CEC |
+| miniDSP Flex HTx | HDMI CEC (on/standby); USB (using minidsp-rs) |
+| HDFury Vertex 2 | HDMI CEC; network/IP |
 | WiiM Pro | Network/IP control |
-| Apple TV 4K | HDMI CEC |
+| Apple TV 4K | HDMI CEC; network/IP |
+| Pioneer SC-LX71 | RS232 via iTach Flex |
+
+THe Pioneer SC-LX71 is an AVR which is being used as a power amp until I get a dedicated power amp which will also have 12V trigger in. At that point the power amp will be powered on/off automatically.
 
 Other source devices (PS3, RetroPie) are not included as controllable devices, but **comando** enables input selection for them.
 
-## Dependencies
+## Configuration
+
+### Apple TV
+
+Use `atvremote scan` to find devices. Set `id` in the configuration file to one of the identifiers. Use `atvremote --id <identifier> --protocol companion pair` to pair to your Apple TV and get the credentials, store these in the configuration file as `credentials`.
+
+## Acknowledgments
 
 | Dependency | Type | Remarks |
 | ---------- | ---- | ------- |
@@ -52,6 +64,5 @@ Other source devices (PS3, RetroPie) are not included as controllable devices, b
 | [cec-utils](https://manpages.debian.org/testing/cec-utils/cec-client.1.en.html) | CLI | For testing/configuration of HDMI CEC, see [this guide](https://pimylifeup.com/raspberrypi-hdmi-cec/) |
 | [cec-ctl](https://manpages.debian.org/bookworm/v4l-utils/cec-ctl.1.en.html#help~21) | CLI | Alternative to cec-utils |
 | [cec](https://github.com/trainman419/python-cec) | Python package | CEC control of on/standby for LG TV and miniDSP Flex HTx |
-| [bscpylgtv](https://github.com/chros73/bscpylgtv) | Python package | Network/IP control of LG TV |
-| [PyTach](https://github.com/gotling/PyTach) | Python package | Hopefully not needed, but I have a couple of Global Caché iTach Flex which can be used to bridge IR and RS232 control to network/IP |
-| httpx | Python package | Interfacing with REST APIs |
+| [pyatv](https://pyatv.dev/) | Python package | Client library for Apple TV and AirPlay devices |
+| [httpx](https://www.python-httpx.org/) | Python package | Next-generation HTTP client for Python |

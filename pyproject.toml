@@ -7,7 +7,10 @@ authors = [
     { name = "Kenneth Trelborg Vestergaard", email = "6765646+mortencombat@users.noreply.github.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "httpx[cli]>=0.28.1",
+    "pyatv>=0.16.0",
+]
 
 [project.scripts]
 comando = "comando:main"
@@ -15,3 +18,8 @@ comando = "comando:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.4",
+]
