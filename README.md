@@ -1,7 +1,7 @@
 # comando
 
-[![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Python Versions](https://img.shields.io/badge/python-3.12%20%7C%203.13-blue)](https://www.python.org)
+[![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **comando** is a hobby project to create a controller/remote for my A/V devices. It is designed to run on a Raspberry Pi Zero 2 W using Raspberry Pi OS Lite (64-bit).
@@ -53,6 +53,10 @@ THe Pioneer SC-LX71 is an AVR which is being used as a power amp until I get a d
 Other source devices (PS3, RetroPie) are not included as controllable devices, but **comando** enables input selection for them.
 
 ## Configuration
+
+Device configuration is stored in `config.toml`. Devices are initialized and registered in `main()` in `src/comando/__init__.py`.
+
+To run Comando, use `uv run comando [--debug]`. Logs are stored in `comando.log`. If `--debug` option is included, debug level is used for logging.
 
 ### Apple TV
 
