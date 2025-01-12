@@ -34,7 +34,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900`}
       >
         {children}
       </body>

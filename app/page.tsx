@@ -2,20 +2,27 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/play.svg"
-          alt="Comando logo"
-          width={180}
-          height={38}
-          priority
-        />
-        
+    <div className="flex items-start justify-center min-h-[100dvh] p-4 sm:p-8">
+      <main className="flex flex-col gap-8 items-center sm:items-start max-w-screen-sm w-full">
+        <div className="flex items-center gap-3 w-full">
+          <Image
+            className="dark:invert"
+            src="/play.svg"
+            alt="Comando logo"
+            width={32}
+            height={32}
+            priority
+          />
+          <span className="text-xl font-medium">comando</span>
+        </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          Coming soon...
+        <div className="w-full bg-slate-500/20 rounded-3xl p-8">
+          <p><strong>Video</strong></p>
+          <p>Some controls here.</p>
+        </div>
+        <div className="w-full bg-slate-500/20 rounded-3xl p-8">
+          <p><strong>Audio</strong></p>
+          <p>Some controls here.</p>
         </div>
       </main>
     </div>
