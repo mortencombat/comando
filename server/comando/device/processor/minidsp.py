@@ -117,6 +117,7 @@ class MiniDSP:
         """Disconnect from the MiniDSP device."""
         self._device_index = None
 
+    @property
     async def _status(self) -> Dict[str, Any]:
         """Get the current device status."""
         if self._device_index is None:
