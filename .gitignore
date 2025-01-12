@@ -12,7 +12,32 @@ wheels/
 # Setup/configuration
 config.toml
 
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
 # Miscellaneous
 .DS_Store
-*.log
-*.log.*
+*.pem
+.ruff_cache
+server/comando/static
+
+# Debugging/logs
+*.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

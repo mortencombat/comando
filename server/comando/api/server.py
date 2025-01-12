@@ -2,11 +2,15 @@ import logging
 import os
 
 from contextlib import _AsyncGeneratorContextManager, asynccontextmanager
+from importlib import resources
 from logging.handlers import RotatingFileHandler
 from typing import Any, Callable
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
+import comando
 
 from comando.controller import Controller
 
@@ -15,23 +19,43 @@ from .router import router
 
 
 def setup_logging() -> None:
-    loglevel = os.getenv("COMANDO_LOG_LEVEL", "INFO").upper()
-    level = getattr(logging, loglevel, logging.INFO)
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s %(levelname)s [%(name)s]: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-        handlers=[
-            RotatingFileHandler(
-                filename="comando.log",
-                encoding="utf-8",
-                mode="a",
-                maxBytes=1024 * 1024,  # 1 MB
-                backupCount=5,
-            ),
-            logging.StreamHandler(),
-        ],
+    # Convert string levels to logging constants
+    file_level = getattr(
+        logging, os.getenv("COMANDO_FILE_LOG_LEVEL", "INFO").upper(), logging.INFO
     )
+    console_level = getattr(
+        logging, os.getenv("COMANDO_CONSOLE_LOG_LEVEL", "WARNING").upper(), logging.INFO
+    )
+
+    # Create root logger and set to lowest level of the two
+    root_logger = logging.getLogger()
+    root_logger.setLevel(min(file_level, console_level))
+
+    # Create formatters
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s [%(name)s]: %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
+    )
+
+    # Setup file handler
+    file_handler = RotatingFileHandler(
+        filename=resources.files(comando) / "comando.log",
+        encoding="utf-8",
+        mode="a",
+        maxBytes=1024 * 1024,  # 1 MB
+        backupCount=5,
+    )
+    file_handler.setLevel(file_level)
+    file_handler.setFormatter(formatter)
+
+    # Setup console handler
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(console_level)
+    console_handler.setFormatter(formatter)
+
+    # Remove any existing handlers and add new ones
+    root_logger.handlers.clear()
+    root_logger.addHandler(file_handler)
+    root_logger.addHandler(console_handler)
 
 
 setup_logging()
@@ -92,6 +116,10 @@ def create_app() -> FastAPI:
         return response
 
     app.include_router(router)
+
+    # Serve the comando app as static files
+    static_path = resources.files(comando) / "static"
+    app.mount("/", StaticFiles(directory=str(static_path), html=True), name="comando")
 
     logger.info("FastAPI application setup complete")
     return app

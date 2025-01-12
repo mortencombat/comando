@@ -1,0 +1,23 @@
+[[devices]]
+identifier = "wiim"
+host = "10.0.30.217"
+
+[[devices]]
+identifier = "minidsp"
+host = "127.0.0.1"
+port = 5380
+serial = 123456
+
+[[devices]]
+identifier = "itach"
+host = "10.0.30.61"
+
+[[devices]]
+identifier = "vertex2"
+host = "10.0.30.65"
+port = 2220
+
+[[devices]]
+identifier = "appletv"
+device_id = "42:FE:C1:80:BE:3A"
+credentials = "b6a6e7c4b72b161bb8bdb38a5ebba7457f58762d67fd4f5762e9d2caffecb494:5a3291af4c97d78ce75e5e1705aa7c8eba39840d5f2131ac375243b18b018348:34324645433138302d424533412d344236392d394633462d453338433632434344324439:64386634623061652d336335332d343538302d616334372d323737313831343731396139"

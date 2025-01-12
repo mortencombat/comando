@@ -72,3 +72,26 @@ Use `atvremote scan` to find devices. Set `id` in the configuration file to one 
 | [cec](https://github.com/trainman419/python-cec) | Python package | CEC control of on/standby for LG TV and miniDSP Flex HTx |
 | [pyatv](https://pyatv.dev/) | Python package | Client library for Apple TV and AirPlay devices |
 | [httpx](https://www.python-httpx.org/) | Python package | Next-generation HTTP client for Python |
+
+
+## Development
+
+### Front-end/app
+
+Run the development server `npm run dev`.
+
+### Server/API
+
+Run the development server `uv run comando --reload`.
+
+### Building
+
+1. Run `npm run build` to build a production version of the app to be served by the server.
+2. Run `uv build --wheel` to build the Python package.
+
+### Installation
+
+1. Install the Python package using `uv tool install <package.whl>`.
+2. Run `uvx comando` to start the server.
+
+TODO: config.toml should be included in the package.

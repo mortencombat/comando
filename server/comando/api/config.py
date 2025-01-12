@@ -1,5 +1,7 @@
 import logging
 
+from importlib import resources
+
 import tomllib
 
 logger = logging.getLogger(__name__)
@@ -8,7 +10,8 @@ logger = logging.getLogger(__name__)
 def get_devices() -> None:
     # Read configuration
     try:
-        with open("config.toml", "rb") as f:
+        config_path = resources.files("comando").joinpath("comando.toml")
+        with open(config_path, "rb") as f:
             config = tomllib.load(f)
     except Exception as e:
         logger.error(f"Error loading config: {e}")
